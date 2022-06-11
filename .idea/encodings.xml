@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/mybatis_002_users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis_002_users/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis_1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mybatis_1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_001/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_001/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_002/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_002/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_003_ioc_an/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_003_ioc_an/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_004_aop_1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_004_aop_1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_005_aop_2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_005_aop_2/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_006_sm_1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_006_sm_1/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_mvc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_mvc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_mvc_2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring_mvc_2/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

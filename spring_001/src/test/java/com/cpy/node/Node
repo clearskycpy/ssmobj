@@ -1,0 +1,26 @@
+AOP  面向切面编程
+就是将公共的通用的重复的代码独立开发 在需要的时候反射回去 底层的原理是动态代理
+
+IOC 控制反转 是一种思想 一种思想 由spring进行对象的创建和依赖注入 程序员使用的时候直接取出
+    正转 有程序员创建对象{new}
+            缺点
+    反转
+        有spring容器创建对象和依赖注入，将控制权给spring容器 反射机制
+
+IOC <bean id="stu" class="com.cpy.pojo.Student></bean>     set方法注入 <property name="age" value="12"></property>
+       1.给创建的对象赋值
+         使用set注入 或者构造方法注入  ref 是依赖注入 根据xml的bean里面的的工厂中有就可以注入
+       2.
+       3.使用三层架构开发
+            spring会接管那些对象的创建？
+            除了实体类之外的所有的类
+          非spring的三层结构
+            pojo Users
+            dao UsersMapper
+            UsersMapperImpl
+            业务逻辑层
+            UsersService - impl
+            界面层
+            UsersController
+
+

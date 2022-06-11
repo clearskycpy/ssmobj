@@ -1,0 +1,6 @@
+1. 什么是springmvc 用来优化控制器也具备ioc和aop
+
+ 什么是springmvc 模型视图控制器 所有的web应用都基于mvc
+ m 模型层
+ v 视图层
+ c 控制器

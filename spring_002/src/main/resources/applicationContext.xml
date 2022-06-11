@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    数据访问层创建对象-->
+    <bean id="uMapper" class="com.cpy.dao.impl.UsersMapperImpl"></bean>
+<!--    业务逻辑层对象-->
+    <bean id="uService" class="com.cpy.service.impl.UsersServiceImpl">
+        <property name="usersMapper" ref="uMapper"></property>
+    </bean>
+<!--    界面层对象-->
+    <bean id="uController" class="com.cpy.controller.UsersController">
+        <property name="usersService" ref="uService"></property>
+    </bean>
+</beans>

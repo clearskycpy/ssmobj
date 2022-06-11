@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/dynamic_001_static" />
+    <file type="web" url="file://$PROJECT_DIR$/spring_mvc" />
+    <file type="web" url="file://$PROJECT_DIR$/spring_mvc_2" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/c_01_static/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled1/pom.xml" />
+        <option value="$PROJECT_DIR$/dynamic_01_static/pom.xml" />
+        <option value="$PROJECT_DIR$/dynamic_001_static/pom.xml" />
+        <option value="$PROJECT_DIR$/dynamic_02_jdk/pom.xml" />
+        <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_1/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_002_users/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_001/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_002/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_003_ioc_an/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_004_aop_1/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_005_aop_2/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_005_aop_3/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_005_aop_6/pom.xml" />
+        <option value="$PROJECT_DIR$/untitled/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_006_sm_1/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_mvc/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_mvc_2/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/dynamic_01_static/dynamic_01_jdk/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

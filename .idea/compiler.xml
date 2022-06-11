@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mybatis_002_users" />
+        <module name="untitled" />
+        <module name="spring_003_ioc_an" />
+        <module name="spring_mvc_2" />
+        <module name="test" />
+        <module name="spring_005_aop_2" />
+        <module name="dynamic_02_jdk" />
+        <module name="spring_004_aop_1" />
+        <module name="spring_002" />
+        <module name="spring_001" />
+        <module name="spring_006_sm_1" />
+        <module name="spring_mvc" />
+        <module name="dynamic_001_static" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="c_01_static" target="1.5" />
+      <module name="dynamic_001_static" target="1.5" />
+      <module name="dynamic_01_jdk" target="1.5" />
+      <module name="dynamic_01_static" target="1.5" />
+      <module name="dynamic_02_jdk" target="1.5" />
+      <module name="mybatis_002_users" target="1.8" />
+      <module name="spring_001" target="1.8" />
+      <module name="spring_002" target="1.8" />
+      <module name="spring_003_ioc_an" target="1.8" />
+      <module name="spring_004_aop_1" target="1.8" />
+      <module name="spring_005_aop_2" target="1.8" />
+      <module name="spring_005_aop_3" target="17" />
+      <module name="spring_005_aop_6" target="17" />
+      <module name="spring_006_sm_1" target="1.8" />
+      <module name="spring_mvc" target="1.8" />
+      <module name="spring_mvc_2" target="1.8" />
+      <module name="test" target="1.8" />
+      <module name="untitled" target="17" />
+      <module name="untitled1" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

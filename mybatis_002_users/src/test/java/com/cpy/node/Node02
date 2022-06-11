@@ -1,0 +1,64 @@
+1表之间的关联关系
+  关联关系是有关联方向的
+  1）一对多
+        客户和订单
+        使用 查询客户 可以查询客户下所有的订单
+        将客户的实体类里面定义一个订单集合
+        注意起别名之后的列名要注册在resultMap中 不能注册原有的id名字
+        <!--    //    根据id查询所有的信息和名下所有的订单
+            Customer getById(Integer id);-->
+            <resultMap id="customermap" type="Customer">
+        <!--        主键绑定-->
+                <id column="id" property="cid"></id>
+        <!--        非主键绑定-->
+                <result column="name" property="name"></result>
+                <result column="age" property="age"></result>
+        <!--        外键的集合绑定-->
+                <collection property="ordersList" ofType="orders">
+        <!--            主键绑定-->
+                    <id property="id" column="oid"></id>
+        <!--            非主键绑定-->
+                    <result column="ordernumber" property="orderNumber"></result>
+                    <result property="orderPrice" column="orderprice"></result>
+
+                </collection>
+            </resultMap>
+            <select id="getById" parameterType="int" resultMap="customermap">
+                select c.id cid,name,o.id oid,ordernumber,orderprice,customer_id
+                from customer c inner  join orders o on c.id = o.customer_id
+                where c.id=#{id}
+            </select>
+            select c.id cid,name,o.id oid,ordernumber,orderprice,customer_id
+            from customer c inner join orders o on c.id = o.customer_id where c.id=?
+            存在问题 等值匹配 如果在附表中不存在主表相关联的信息 。就不会查询到主表信息
+
+            所以采用了外连接解决问题
+            select c.id cid,name,age,o.id oid,ordernumber,orderprice,customer_id
+            from customer c left join orders o on c.id = o.customer_id where c.id=?
+
+  2）多对一
+        根据订单查客户
+        通过订单信息 查询用户是谁  采用的等值查询 因为必定有一个用户和次订单对应否则就没有对应关系
+        sql：select o.id oid,ordernumber,orderprice,customer_id,c.id cid,name,age
+        from orders o inner join customer c on o.customer_id = c.id where o.id=?
+        <resultMap id="ordersMap" type="Orders">
+                <id column="oid" property="id"></id>
+                <result column="ordernumber" property="orderNumber"></result>
+                <result column="orderprice" property="orderPrice"></result>
+        <!--        只绑定基本信息-->
+                <association property="customer" javaType="customer">
+                    <id column="cid" property="id"></id>
+                    <result property="name" column="name"></result>
+                    <result column="age" property="age"></result>
+                </association>
+            </resultMap>
+            <select id="getById" resultMap="ordersMap" parameterType="int">
+                select o.id oid,ordernumber,orderprice,customer_id,c.id cid,name,age
+                from orders o inner join customer c on o.customer_id = c.id
+                where o.id=#{id}
+            </select>
+            在处理表和表之间的管理关系的时候可以有优化的解决方法 将一条sql语句拆分成两条SQL语句
+            在 association 中使用column 属性 将id 传过来 然后再使用select属性 调用第二条SQL
+
+  3）一对一
+  3）多对多

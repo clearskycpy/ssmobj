@@ -1,0 +1,44 @@
+对象分析
+1.Resources类是用来解析xml文件  创建流对象
+2.SqlSessionFactory 接口
+Ctrl＋ h 用来查看接口的实现类和子接口  也可向上
+DefaultSqlSessionFactory 是他的实现类
+3.SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(in);
+通过解析配置文件 获取工厂对象  （构造者模式）
+4.SqlSession接口
+defaultSqlSession是他的实现类完成session的功能
+优化代码
+**************
+1.将注册session的一系列步骤封装到Junit的注解方法里面 减少重复代码
+2.为实体类注册别名 可以不用每次都写全类名  SqlMapConfig.xml文件 中注册 properties后面
+   1.1 单个注册
+   1.2 批量注册
+<typeAliases>
+<!--        单个别名注册     -->
+<!--        <typeAlias type="org.example.pojo.Student" alias="student"></typeAlias>-->
+<!--        批量注册   别名自动为 类名的小驼峰命名法    -->
+        <package name="org.example.pojo"></package>
+</typeAliases>
+3.设置日志输出 在 SqlMapConfig.xml 里面配置 可以查看底层执行过程
+   <settings>
+           <setting name="logimpl" value="STDOUT_LOGGING"/>
+   </settings>
+*************************
+1.为什么要使用动态代理
+以后的开发都是三层结构 （ 接口指向 实现类 ）
+界面层  业务逻辑层   持久层（数据访问的接口层  usersDao）
+由于没有userDao这个类 使用的 xml代替了
+问题
+无法在业务逻辑层访问xml问价中的功能
+解决方法
+     动态代理
+     在业务逻辑层要通过接口访问数据访问层的功能 ，动态代理可以实现
+1.1动态代理的实现规范
+   1.1.1 mapper.xml 文件和mapper.java 在同一个目录
+   1.1.2 mapper.xml 文件和mapper.java 文件名先沟通
+   1.1.3 mapper.xml 文件的标签的id 值和 mapper.java的接口方法名完全一致
+   1.1.4 mapper xml 的parameterType 与mapper 接口中的方法名完全一致
+   1.1.5 mapper xml 的resultType 与mapper 接口中的返回值类型完全一致
+   1.1.6 mapper xml namespace 与必须是接口的完全限定名称
+   1.1.7 SQLMapConfig注册mapper 的时候 使用class=全限定类名
+

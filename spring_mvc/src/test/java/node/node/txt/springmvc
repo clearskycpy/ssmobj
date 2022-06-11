@@ -1,0 +1,36 @@
+分析web请求
+    web请求的执行流程
+    ··index.jsp《————————》DispatcherServlet（核心处理器）《————————》 springmvc 的处理器是一个普通的方法
+    DispatcherServlet 要在web.xml 中注册才可以用、、、
+
+ RequestMapping("/demo") 注解的用处
+    客户端访问的时候使用的就是这个名称
+    <a href="${pageContext.request.contextPath}/demo.action">zhuddddddddddddddd</a>
+    此注解可以放在类上 相当于虚拟路径 可以延长路径
+    次注解可以区分get和post请求  method = RequestMethod.GET  使用这个属性
+    五种数据的提交方法 action的返回值 页面跳转的四种方式
+ 五种数据提交的优化
+   1 单个数据提交 String myname,int age 方法参数 对应正确
+   2 对象封装提交数据 保证实体类名和提交名字一样 自动黄建对象
+    get tomcat 解决了乱码 但是 post没有解决
+   3 动态占位符提交
+   4 映射名称不一致    提交请求与action的方法形参不一致  使用 RequestParam 注解来解析
+   5 方法参数使用 request 对象 。然后手工提取
+ 中文乱码的解决方法
+   配置过滤器
+
+ action 方法的返回值
+        String { 客户端资源的地址 拼接前缀和后缀 ，还可以指定返回路径
+        Object ：返回json格式的对象 自动将对象和集合转为惊悚 使用的Jackson 工具进行转换 必须要添加Jackson依赖一般用于Ajax
+        void 没有返回值 一般用于Ajax请求
+        基本数据类型 也是用于Ajax请求
+        ModelAndView
+
+ 完成Ajax请求访问服务器返回学生集合
+       1 添加Jackson 依赖
+       2 在webapp目录下新建js目录 添加jQuery函数库
+       3 在index。jsp 页面导入函数库
+       4 在action上添加@ResponseBody 用来处理Ajax请求
+       5 在springmvc.xml文件中填在注解驱动<mvc:annotationDriven/> 用来解析@ResponseBody 注解
+
+

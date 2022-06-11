@@ -1,0 +1,171 @@
+1.1动态代理的实现规范
+   1.1.1 mapper.xml 文件和mapper.java 在同一个目录
+   1.1.2 mapper.xml 文件和mapper.java 文件名先沟通
+   1.1.3 mapper.xml 文件的标签的id 值和 mapper.java的接口方法名完全一致
+   1.1.4 mapper xml 的parameterType 与mapper 接口中的方法名完全一致
+   1.1.5 mapper xml 的resultType 与mapper 接口中的返回值类型完全一致
+   1.1.6 mapper xml namespace 与必须是接口的完全限定名称
+   1.1.7 SQLMapConfig注册mapper 的时候 使用class=全限定类名
+1.2
+  批量注册mapper
+1.3
+  1，#{} 的用途
+      大多数情况下都是使用这个  ，表示一个占位符
+      使用的是parameterType 是安全的数据库访问。
+      1.1 如果是基本数据类型 {} 里面可以放任何数据类型
+      1.2 如果是引用数据类型则放属性名 且区分大小写
+
+  2.${} 的用途
+      2.1 字符串拼接或者字符串替换
+      2.2 一般用于模糊查询  后期会有优化
+      2.3 用于字符串拼接
+1.4
+  selectKey标签的用途 <Select>的子标签
+  keyProperty users 的那个属性接收返回的主键值
+  resultType 返回的主键的类型
+  order 决定这条语句在什么时候执行 获取id应该在后面获取
+
+1.5
+  uuid
+  全球唯一的字符串。 当数据量非常大的时候 主键不容易唯一的时候需要使用到
+  public void testUUID(){
+          UUID uuid = UUID.randomUUID();
+          System.out.println(uuid);
+  //        一般使用的时候会将-替换成“”  、、 可以用来生成各种随机的串 比如拼接时间戳等等
+          System.out.println(uuid.toString().replace("-","").substring(20));
+      }
+1.6
+  动态sql
+         1.6.1将一个复杂并且重复的sql语句 抽取出来
+         <sql> sql 代码片段
+         <include> 引用代码片段
+         <sql id="allColumns">
+                 id,username,birthday,sex,address
+             </sql>
+             <select id="selectAll" resultType="users">
+                 select <include refid="allColumns"/> from users
+             </select>
+         1.6.2 if标签
+         <if> 和 <where>
+         <select id="selectMore" resultType="users" parameterType="users">
+                 select <include refid="allColumns"></include>
+                 from users
+                 <where>
+                     <if test="userName != null and userName != ''">
+                         and username like concat('%',#{userName},'%')
+                     </if>
+                     <if test="birthday != null">
+                         and birthday = #{birthday}
+                     </if>
+                     <if test="sex != null and sex != ''">
+                         and sex = #{sex}
+                     </if>
+                     <if test="address != null and address != ''">
+                         and address like concat('%',#{address},'%')
+                     </if>
+                 </where>
+             </select>
+         1.6.3
+         <set> 标签  有选择的更新  和if 连用  有选择的更新 至少更新一列
+         <update id="updateNew" parameterType="users">
+                 update users
+                 <set>
+                     <if test="userName != null and userName != ''">
+                         username = #{userName},
+                     </if>
+                     <if test="birthday != null">
+                         birthday = #{birthday},
+                     </if>
+                     <if test="sex != null and sex != ''">
+                         sex = #{sex},
+                     </if>
+                     <if test="address != null and address != ''">
+                         address = #{address},
+                     </if>
+                 </set>
+                 where id = #{id}
+         </update>
+         1.6.4
+         <foreach>标签 ： 用来进行循环遍历批量增加   处理需要重复的值
+         foreach标签的参数
+          1.6.4.1 collection 遍历的集合类型， 数组或者集合 map list
+          1.6.4.2  item  集合中的元素 也可能是对象
+          1.6.4.3  separator 两个元素之间分割符号
+          1.6.4.4  open  整个循环以什么符号开始
+          1.6.4.5  close 整个循环以什么符号结束
+          批量查询
+          sql： select id,username,birthday,sex,address from users where id in ( ? , ? , ? )
+         <select id="getByIds" resultType="users">
+                 select <include refid="allColumns"></include>
+                 from users
+                 where id in
+                     <foreach collection="array" item="id" separator="," open="(" close=")">
+                     #{id}
+                     </foreach>
+             </select>
+         批量删除
+         sql  delete from users where id in ( ? , ? , ? )
+         <delete id="deleteBatch" >
+             delete from users
+             where id in
+             <foreach collection="array" item="id" open="(" close=")" separator=",">
+                 #{id}
+             </foreach>
+         </delete>
+         批量增加
+         sql  insert into users(username,birthday,sex,address) values (?,?,?,?) , (?,?,?,?) , (?,?,?,?)
+         <insert id="inserts" >
+                 insert into users(username,birthday,sex,address)
+                 values
+                         <foreach collection="list" item="u" separator=",">
+                             (#{u.userName},#{u.birthday},#{u.sex},#{u.address})
+                         </foreach>
+
+         </insert>
+
+         批量更新  批量执行更新语句 多条语句  separator 这个条件使用的 ；
+          而且要执行批量更新必须允许执行多条sql语句操作  在jdbcConfig.properties
+          文件中url中添加&allowMultiQueries=true  容许多行操作
+  2.指定参数位置
+  如果参数是多个，可以通过指定参数位置传参数 实体类包含不住的条件
+  实体中只能封装一定的条件 例如 查询指定日期范围内的成员
+      <select id="getByBirthday" resultType="users">
+              select <include refid="allColumns"></include>
+              from users
+              where birthday between #{arg0} and #{arg1}
+          </select>
+      List<Users> getByBirthday(Date begin , Date end);
+      通过#{arg？} 改变 ？ 的值 确定使用哪个参数
+  3.    也可以使用@Parma
+  4. 使用map封装
+    #{key}
+
+  5.返回值是map
+       封装的数据是多张表的属性
+       返回的map的key就是列名或者列明的别名
+
+  6.返回的是list<map>
+      查询了多行
+
+1.7
+  列名和实体类名不一致
+     1).使用别名的方式 让列名对应实体类名
+     <select id="getAll" resultType="book">
+             select bookid id,bookname name from book
+     </select>
+     2).使用resultmap 进行参数绑定
+            1.在查询语句中使用resultMap 指定封装的对象
+            2.定义好对应的resultMap 进行主键绑定和非主键绑定
+     <resultMap id="bookmap" type="book">
+     <!--        主键绑定-->
+             <id property="id" column="bookid"></id>
+     <!--        非主键绑定-->
+             <result property="name" column="bookname"></result>
+         </resultMap>
+         <select id="getAll" resultMap="bookmap">
+             select bookid id,bookname name from book
+         </select>
+
+
+
+

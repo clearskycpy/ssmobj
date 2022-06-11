@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dynamic_01_static/dynamic_01_static.iml" filepath="$PROJECT_DIR$/dynamic_01_static/dynamic_01_static.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dynamic_02_jdk/dynamic_02_jdk.iml" filepath="$PROJECT_DIR$/dynamic_02_jdk/dynamic_02_jdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_002_users/mybatis_002_users.iml" filepath="$PROJECT_DIR$/mybatis_002_users/mybatis_002_users.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_001/spring_001.iml" filepath="$PROJECT_DIR$/spring_001/spring_001.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_002/spring_002.iml" filepath="$PROJECT_DIR$/spring_002/spring_002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_003_ioc_an/spring_003_ioc_an.iml" filepath="$PROJECT_DIR$/spring_003_ioc_an/spring_003_ioc_an.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_004_aop_1/spring_004_aop_1.iml" filepath="$PROJECT_DIR$/spring_004_aop_1/spring_004_aop_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_005_aop_2/spring_005_aop_2.iml" filepath="$PROJECT_DIR$/spring_005_aop_2/spring_005_aop_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_006_sm_1/spring_006_sm_1.iml" filepath="$PROJECT_DIR$/spring_006_sm_1/spring_006_sm_1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_mvc/spring_mvc.iml" filepath="$PROJECT_DIR$/spring_mvc/spring_mvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_mvc_2/spring_mvc_2.iml" filepath="$PROJECT_DIR$/spring_mvc_2/spring_mvc_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis_1/test.iml" filepath="$PROJECT_DIR$/mybatis_1/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/untitled/untitled/untitled.iml" filepath="$PROJECT_DIR$/untitled/untitled/untitled.iml" />
+    </modules>
+  </component>
+</project>

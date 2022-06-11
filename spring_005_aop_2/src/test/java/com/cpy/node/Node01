@@ -1,0 +1,57 @@
+AspectJ的使用
+ 1. 前置通知的实现
+    <!--    创建业务对象-->
+        <bean id="someService" class="com.cpy.service.impl.SomeServiceImpl"></bean>
+    <!--    创建切面对象-->
+        <bean id="myAspect" class="com.cpy.service.aspect.MyAspect"></bean>
+    <!--    绑定-->
+        <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    @Before(value = "execution(public String com.cpy.service.impl.SomeServiceImpl.doSome(String,int))")
+    切入点表达式指定切入位置
+    <!--    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+
+    子类代理的方式-->proxy-target-class="true"
+    也可以使用注解  但是基于注解的方式一定要添加包扫描
+ 2.后置通知
+    后置方法
+        public void myAfterReturning(Object obj){
+            obj 是目标方法的返回值 ，可以使用后置方法改变目标方法的返回值？
+            如果目标方法是简单类型就不可以改变 引用类型就可以改变
+        }
+        /**
+             * 后置通知的方法规范
+             *    返回权限是public
+             *    方法没有返回值 void
+             *    方法名自定义
+             *    方法有参数 也可以没有参数
+             * @AfterReturning
+             * value 切入表达式
+             * returning 指定目标方法的返回值名称 必须与切面方法的参数名称一致
+             */
+            @AfterReturning(value = "execution(public String com.cpy.service.impl.SomeServiceImpl.doSome(String,int))"
+                    ,returning = "obj")
+3.环绕通知
+    通过拦截目标方法的方式在目标方法前后增强放入通知 是功能最强大的通知，一般事务使用此通知 他可以轻易改变目标方法的返回值
+        目标方法{
+            return sss
+        }    调用 目标方法
+    环绕方法
+     @Around(value = "execution(public String com.cpy.service.impl.SomeServiceImpl.doSome(String,int))")
+        public Object MyAround(ProceedingJoinPoint pjo) throws Throwable {
+    //        前切功能实现
+            System.out.println("前切功能实现");
+    //        目标方法实现  ProceedingJoinPoint 目标方法
+            Object obj = pjo.proceed(pjo.getArgs());
+    //        后切功能实现
+            System.out.println("后切功能实现");
+            return obj.toString().toUpperCase(Locale.ROOT);
+        }
+4.最终通知@After
+    无论目标方法执行都会执行
+
+给切入点表达式起别名
+@pointcut起别名
+ 注解一个空方法 这个空方法名字就是别名 注解的value就是切入点表达式的别名
+ 面向切面编程 将公共的代码 使用动态代理的功能实现代码复用 我们使用的是aspectJ
+
+

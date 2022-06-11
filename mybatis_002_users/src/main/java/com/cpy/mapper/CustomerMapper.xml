@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cpy.mapper.CustomerMapper">
+<!--    //    根据id查询所有的信息和名下所有的订单
+    Customer getById(Integer id);-->
+    <resultMap id="customermap" type="Customer">
+<!--        主键绑定-->
+        <id column="cid" property="id"></id>
+<!--        非主键绑定-->
+        <result column="name" property="name"></result>
+        <result column="age" property="age"></result>
+<!--        外键的集合绑定-->
+        <collection property="ordersList" ofType="orders" >
+<!--            主键绑定-->
+            <id property="id" column="oid"></id>
+<!--            非主键绑定-->
+            <result column="ordernumber" property="orderNumber"></result>
+            <result property="orderPrice" column="orderprice"></result>
+        </collection>
+    </resultMap>
+    <select id="getById" parameterType="int" resultMap="customermap">
+        select c.id cid,name,age,o.id oid,ordernumber,orderprice,customer_id
+        from customer c left join orders o on c.id = o.customer_id
+        where c.id=#{id}
+    </select>
+</mapper>

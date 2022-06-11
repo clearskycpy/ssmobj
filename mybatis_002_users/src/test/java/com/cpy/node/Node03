@@ -1,0 +1,23 @@
+！ Mybatis中的事务管理
+  1.程序员自己提交
+  <transactionManager type="JDBC"></transactionManager>
+  2.factory.openSession(); 里面设置为true会自动提交
+  3.
+mybatis 中的缓存机制
+  mybatis中提供两级缓存
+  一级缓存和二级缓存 （提高查询效率）
+  1.一级缓存自动开启
+    缓存就是用来提高查询效率
+    如果提交过了事务 ，会自动把所有的缓存清除保证数据统一
+    一级缓存用的是sqlSession作用域
+
+  2.二级缓存需要配置文件才能开启
+    1）在核心配置文件开启缓存
+    2）mapper文件中开启缓存
+    3）实体类对象实现序列化接口
+
+ORM(Object Relational Mapping)  对象关系映射
+  mybatis是ORM非常优秀的框架
+  java中对象的方式操作对象。
+
+  也是持久化的操作 将数据库中的数据抽取出来 通过对象的方式保存在内存当中

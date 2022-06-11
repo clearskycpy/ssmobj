@@ -1,0 +1,18 @@
+package com.cpy.service.impl;
+
+import com.cpy.service.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class UserB implements Service {
+    public void sing() {
+        System.out.println("userb?????????");
+    }
+
+    public String things(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(simpleDateFormat.format(date));
+        return "UserB";
+    }
+}

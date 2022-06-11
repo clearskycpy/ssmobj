@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    创建对象-->
+    <bean id="school" class="com.cpy.pojo.School">
+<!--        使用set-->
+<!--        <property name="name" value="aaa"></property>-->
+<!--        <property name="address" value="BBB"></property>-->
+        <!--        使用构造方法参数名称注入值-->
+        <constructor-arg name="name" value="anc"></constructor-arg>
+        <constructor-arg name="address" value="sdhfsjk"></constructor-arg>
+    </bean>
+    <!--<bean id="stu" class="com.cpy.pojo.Student">
+        <property name="name" value="张三"></property>
+        <property name="age" value="12"></property>
+        <property name="school" ref="school"></property>
+    </bean>-->
+<!--    使用小标类型注入 只有value都行 只要顺序不错 -->
+    <bean id="stu" class="com.cpy.pojo.Student">
+        <constructor-arg index="0" value="abc"></constructor-arg>
+        <constructor-arg index="1" value="123"></constructor-arg>
+        <constructor-arg index="2" value="school"></constructor-arg>
+    </bean>
+</beans>

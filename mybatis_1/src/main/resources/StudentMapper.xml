@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--是整个文件的大标签  用来开始和结束xml文件
+        namespace 指定命名空间  相当于包名字
+-->
+<mapper namespace="cpy">
+    <!--   select 标签
+            getAll  相当于方法名
+            resultType 指定查询结果集的类型  如果是集合 必须有泛型
+            parameterType  如果返回值有参数 通过这个指定返回参数
+
+        -->
+    <select id="getAll" resultType="org.example.pojo.Student">
+            select id,name,email,age
+            from student
+    </select>
+
+<!--    按照id查询-->
+    <select id="getID" resultType="student" parameterType="_int">
+        select id,name,email,age from student where id=#{id}
+    </select>
+
+<!--    模糊查询 使用了单引号的时候用的是美元符号-->
+    <select id="getByName" parameterType="string" resultType="org.example.pojo.Student" >
+        select id,name,email,age from student where name like '%${name}%'
+    </select>
+
+<!--    增加学生 int insert -->
+    <insert id="insert" parameterType="org.example.pojo.Student">
+        insert into student (name,email,age) values (#{name},#{email},#{age})
+    </insert>
+
+    <!--    按照主键删除-->
+    <delete id="delete" parameterType="int">
+        delete from student where id=#{id}
+    </delete>
+
+<!--    更新数据表-->
+    <update id="update" parameterType="org.example.pojo.Student">
+        update student set name=#{name},email=#{email},age=#{age}
+        where id=#{id}
+    </update>
+</mapper>
